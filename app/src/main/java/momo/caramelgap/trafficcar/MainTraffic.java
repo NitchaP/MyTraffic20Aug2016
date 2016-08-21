@@ -110,7 +110,7 @@ public class MainTraffic extends AppCompatActivity {
         TrafficAdapter trafficAdapter = new TrafficAdapter(this, iconInts, titleStrings, detailShortStrings, StockStrings, priceStrings);
         trafficListView.setAdapter(trafficAdapter);
 
-        //onclick ListView
+        //onclick ListView  ลิงค์ไปหน้าอื่น
         trafficListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
