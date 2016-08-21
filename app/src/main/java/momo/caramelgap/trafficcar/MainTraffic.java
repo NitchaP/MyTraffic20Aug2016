@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -53,7 +54,7 @@ public class MainTraffic extends AppCompatActivity {
         //Create ListView
         //1. Setup Basic Array กำหนดบน class ประกาศตัวแปรใช้เฉพาะ method นี้เท่านั้น
 
-        int[] iconInts = new int[20];
+        final int[] iconInts = new int[20];
         // ค่ารูปแรก  C+A+L  รหัสเรียงบรรทัด
         iconInts[0] = R.drawable.traffic_01;
         iconInts[1] = R.drawable.traffic_02;
@@ -78,7 +79,7 @@ public class MainTraffic extends AppCompatActivity {
 
         //2. Setup Array from other class (MyData 15)  ดึง data จาก pate
         MyData myData = new MyData();
-        String[] titleStrings = myData.getTiteStrings();
+        final String[] titleStrings = myData.getTiteStrings();
 
         int[] ints = myData.getInts();
         String[] StockStrings = new String[ints.length];
@@ -93,14 +94,14 @@ public class MainTraffic extends AppCompatActivity {
 
 
         // 3. Setup Array form other xml (my_data.xml)
-        String[] detailStrings = getResources().getStringArray(R.array.detail);
+        final String[] detailStrings = getResources().getStringArray(R.array.detail);
 
         //SubString คือการตัดคำ
         //ต้อวการจองหน่วยความจำ นับเอง
-        String[] detailShortStrings = new String[detailStrings.length];
+        final String[] detailShortStrings = new String[detailStrings.length];
         for (int i=0; i<detailStrings.length; i+=1) {
 
-            detailShortStrings[i] = detailStrings[i].substring(0, 30) + "...";
+            detailShortStrings[i] = detailStrings[i].substring(0, 120) + "...";
 
         }   // for
 
@@ -109,6 +110,22 @@ public class MainTraffic extends AppCompatActivity {
         TrafficAdapter trafficAdapter = new TrafficAdapter(this, iconInts, titleStrings, detailShortStrings, StockStrings, priceStrings);
         trafficListView.setAdapter(trafficAdapter);
 
+        //onclick ListView
+        trafficListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                //Intent to DetailActivity  เมื่อกดต้องส่งข้อมูล 3 จุดไป
+                Intent intent = new Intent(MainTraffic.this, DetailActivity.class);
+                intent.putExtra("Title", titleStrings[i]);
+                intent.putExtra("Detail", detailStrings);
+                intent.putExtra("icon", iconInts[i]);
+                startActivity(intent);
+
+
+
+            }   //onItemClick
+        });
 
     }   //Main Method
 }   //Main class
