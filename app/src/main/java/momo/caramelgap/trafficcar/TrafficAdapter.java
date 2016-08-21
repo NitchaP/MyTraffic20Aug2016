@@ -52,7 +52,7 @@ public class TrafficAdapter extends BaseAdapter{
         //Layout เสมือน    เปิด layoutเสมือน "context.getSystemService"  Alt+Enter
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         //พาหนะตัวนำพา View ctrl spe
-        View view1 = layoutInflater.inflate(R.layout.traffic_listview, ViewGroup, false);
+        View view1 = layoutInflater.inflate(R.layout.traffic_listview, viewGroup, false);
 
         //Bind Widget
         ImageView iconImageView = (ImageView) view1.findViewById(R.id.imageView);
