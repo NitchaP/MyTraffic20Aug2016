@@ -118,7 +118,7 @@ public class MainTraffic extends AppCompatActivity {
                 //Intent to DetailActivity  เมื่อกดต้องส่งข้อมูล 3 จุดไป
                 Intent intent = new Intent(MainTraffic.this, DetailActivity.class);
                 intent.putExtra("Title", titleStrings[i]);
-                intent.putExtra("Detail", detailStrings);
+                intent.putExtra("Detail", detailStrings[i]);
                 intent.putExtra("icon", iconInts[i]);
                 startActivity(intent);
 
